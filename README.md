@@ -1,9 +1,33 @@
-# Vanachara — Breathe with the Forest
+<div align="center">
+
+# 🌿 Vanachara
+
+### *Breathe with the Forest*
+
+**A field guide to the air you breathe — and the trees that clean it.**
 
 A React + Vite + Tailwind site about forests, plants and the air between them.
 Everything runs client-side: no backend, no accounts, no tracking.
 
-## Design language
+<br>
+
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=0b1f14&labelColor=16241b)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white&labelColor=16241b)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white&labelColor=16241b)
+![Framer Motion](https://img.shields.io/badge/Motion-13-F0B4C4?style=for-the-badge&logo=framer&logoColor=0b1f14&labelColor=16241b)
+![Leaflet](https://img.shields.io/badge/Leaflet-1.9-199900?style=for-the-badge&logo=leaflet&logoColor=white&labelColor=16241b)
+
+![Backend](https://img.shields.io/badge/backend-none-2F6B36?style=flat-square&labelColor=16241b)
+![Accounts](https://img.shields.io/badge/accounts-none-2F6B36?style=flat-square&labelColor=16241b)
+![Tracking](https://img.shields.io/badge/tracking-none-2F6B36?style=flat-square&labelColor=16241b)
+![API keys](https://img.shields.io/badge/API_keys-optional-A3C948?style=flat-square&labelColor=16241b)
+![AQI scale](https://img.shields.io/badge/AQI-CPCB%20%C2%B7%20US%20EPA-F0B4C4?style=flat-square&labelColor=16241b)
+
+</div>
+
+---
+
+## 🎨 Design language
 
 Dark throughout, built on a small token set in `src/index.css`:
 
@@ -17,32 +41,36 @@ Dark throughout, built on a small token set in `src/index.css`:
   inner pill marking the active item — is reused for every segmented control.
 - **One accent.** Blush `#f0b4c4`, reserved for the focus ring and the favicon.
   Everything else is ink, glass and the data's own colours.
-- **One motion.** `bloom` — 14px up, 1s on `cubic-bezier(0.22,1,0.36,1)`,
-  staggered title → CTA → cards. `Reveal` applies the same curve on scroll.
+- **One motion.** `bloom` — up and in on `cubic-bezier(0.22,1,0.36,1)`, staggered
+  title → CTA → cards. Everything below the fold reuses that curve through
+  `src/components/ui/motion.js`: `Reveal` for single blocks, `Stagger` +
+  `StaggerItem` for cascades. Headings settle out of a 6px blur; card grids
+  rise with a touch of scale. Reveals fire **on scroll**, never on mount, so a
+  section animates when you reach it rather than finishing offscreen at load.
 
 Semantic colour is exempt from the accent rule: AQI band colours, footprint
 breakdown bars and the botanical card gradients carry meaning, so they keep
 their own hues.
 
-## The hero video
+## 🎬 The hero video
 
 `public/hero.mp4` is committed with the project and served from our own hosting.
 It is referenced only as the root-relative `/hero.mp4`; no external asset host
 appears anywhere in the source. If you swap the footage, keep it dark and
 low-contrast in the centre — the headline sits on top of it with only a scrim.
 
-## Sections
+## 🧭 Sections
 
 | # | Section | What it does |
 |---|---------|--------------|
-| 1 | **Hero** | Full-viewport looping forest-floor video under a two-stop scrim, a centred headline with a lighter lead-in line, and a foot row of glass cards — note · caption · live-AQI stat · species count. |
-| 2 | **Live AQI** | Auto-detects location via the Geolocation API. Hourly readings from Open-Meteo for the exact coordinates, scored on **India's CPCB National AQI** (US EPA via a toggle), with a pollutant breakdown showing the µg/m³ behind each sub-index, weather chips, and a WAQI station search for any other city. |
-| 3 | **Plant recommender** | Maps the current AQI band to air-purifying species — cleaner air surfaces easy greenery, worse air surfaces the heavy VOC removers. Any band can be previewed manually. |
-| 4 | **Encyclopedia** | 18 native and naturalised Indian trees, searchable by name, local name, botanical name, family, region or tag, with a detail sheet per species. |
-| 5 | **CO₂ calculator** | Six inputs → annual footprint → the number of trees, saplings and square metres it would take to offset it, plus a comparison against Indian, world and Paris-target averages. |
-| 6 | **Nearby parks** | Leaflet over OpenStreetMap data on Esri's keyless Dark Gray basemap, with parks, gardens, groves and reserves pulled live from the Overpass API at a 2/5/10 km radius. |
+| 1 | 🌲 **Hero** | Full-viewport looping forest-floor video under a two-stop scrim, a centred headline with a lighter lead-in line, and a foot row of glass cards — note · caption · live-AQI stat · species count. |
+| 2 | 🌬️ **Live AQI** | Auto-detects location via the Geolocation API. Hourly readings from Open-Meteo for the exact coordinates, scored on **India's CPCB National AQI** (US EPA via a toggle), with a pollutant breakdown showing the µg/m³ behind each sub-index, weather chips, and a WAQI station search for any other city. |
+| 3 | 🪴 **Plant recommender** | Maps the current AQI band to air-purifying species — cleaner air surfaces easy greenery, worse air surfaces the heavy VOC removers. Any band can be previewed manually. |
+| 4 | 📖 **Encyclopedia** | 18 native and naturalised Indian trees, searchable by name, local name, botanical name, family, region or tag, with a detail sheet per species. |
+| 5 | 🧮 **CO₂ calculator** | Six inputs → annual footprint → the number of trees, saplings and square metres it would take to offset it, plus a comparison against Indian, world and Paris-target averages. |
+| 6 | 🗺️ **Nearby parks** | Leaflet over OpenStreetMap data on Esri's keyless Dark Gray basemap, with parks, gardens, groves and reserves pulled live from the Overpass API at a 2/5/10 km radius. |
 
-## Getting started
+## 🚀 Getting started
 
 ```bash
 npm install
@@ -50,7 +78,7 @@ cp .env.example .env     # then paste your WAQI token in
 npm run dev
 ```
 
-### The WAQI token (optional)
+### 🔑 The WAQI token (optional)
 
 The air-quality reading needs **no key at all** — Open-Meteo is keyless. A WAQI
 token only improves the *city/station search*. Grab a free one at
@@ -76,7 +104,7 @@ Two things catch people out:
 Without it the search falls back to WAQI's shared `demo` token, which resolves
 only one fixed sample station. The main reading is unaffected either way.
 
-## Scripts
+## 📜 Scripts
 
 ```bash
 npm run dev       # dev server
@@ -85,7 +113,7 @@ npm run preview   # serve the build
 npm run lint      # oxlint
 ```
 
-## Project layout
+## 🗂️ Project layout
 
 ```
 public/
@@ -100,7 +128,7 @@ src/
   data/             plants.js (air purifiers), trees.js (encyclopedia)
 ```
 
-## Where the numbers come from
+## 📊 Where the numbers come from
 
 **Open-Meteo is the primary source.** It is free, keyless, CORS-open, and current
 to the hour. Crucially it returns raw **µg/m³**, so the CPCB index is computed
@@ -123,7 +151,7 @@ WAQI's `/feed/geo:` endpoint is also unreliable in India: it returns a *Delhi*
 station for Bengaluru coordinates 1,727 km away, reported as `status: "ok"`.
 `fetchNearest()` distance-checks every geo answer for that reason.
 
-### Validating the maths
+### ✅ Validating the maths
 
 The computed US AQI was checked against Open-Meteo's own `us_aqi` field across
 six Indian cities: **Mumbai, Chennai and Kolkata matched exactly**, Bengaluru was
@@ -131,7 +159,7 @@ six Indian cities: **Mumbai, Chennai and Kolkata matched exactly**, Bengaluru wa
 to use instantaneous values, where both EPA and CPCB define 24-hour means — the
 implementation here follows the specification.
 
-### Why the headline is particulate-led
+### 🌫️ Why the headline is particulate-led
 
 CPCB's method takes the worst sub-index across every measured pollutant. This app
 deliberately leads with the **particulates** instead, because the gas figures come
@@ -150,7 +178,7 @@ all-pollutant CPCB number alongside. The gauge is labelled `CPCB AQI · PM` and 
 provenance line reads *particulate-led*, so the method is never implied to be the
 unmodified CPCB formula.
 
-### Averaging windows
+### ⏱️ Averaging windows
 
 Each authority defines its breakpoints against a specific window, so
 `src/lib/openMeteo.js` summarises the hourly series twice, once per scale:
@@ -161,7 +189,7 @@ Each authority defines its breakpoints against a specific window, so
 | NO₂, SO₂ | 24 h mean | **1 h max** |
 | O₃, CO | 8 h max | 8 h max |
 
-## The AQI scale
+## 🇮🇳 The AQI scale
 
 **India's CPCB National AQI is the default.** This matters more than it sounds:
 CPCB's scale is not the US EPA scale relabelled — the breakpoints differ, so the
@@ -187,7 +215,7 @@ to the 2012 table, that one array is the only thing to change.
 The toggle in the air-quality section switches the whole page — hero, gauge,
 legend and plant recommender all read from one scale so they cannot disagree.
 
-## Notes on the data
+## 🔬 Notes on the data
 
 - **AQI bands** for both scales live in `src/lib/aqi.js`, keyed by severity rank
   so the plant recommender works unchanged whichever scale is active. CPCB band
@@ -218,7 +246,7 @@ legend and plant recommender all read from one scale so they cannot disagree.
   excludes `landuse=grass`, which in Indian cities mostly tags road medians and
   verges.
 
-## Accessibility & performance
+## ♿ Accessibility & performance
 
 - Every animation is gated behind `prefers-reduced-motion`; the hero video
   pauses on the first frame rather than looping.
@@ -229,7 +257,30 @@ legend and plant recommender all read from one scale so they cannot disagree.
   `as="video"` is not a valid preload destination, so browsers ignore it and log
   a console warning. The `<video>` carries `preload="auto"`, which does work.
 
-## Credits
+## ▲ Deploying
+
+A static build with no server code, so any static host works. For Vercel:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sandipmandalgit/plants-aqi)
+
+The Vite preset is detected automatically — build `npm run build`, output `dist`.
+No `vercel.json` is needed: it is a single page using hash anchors, so there are
+no rewrite rules to configure.
+
+> [!IMPORTANT]
+> Set `VITE_WAQI_TOKEN` in **Environment Variables before the first build**.
+> Vite inlines env vars at build time, so adding the token later does nothing
+> until you trigger a fresh deploy. Without it the build still succeeds — it
+> quietly falls back to WAQI's shared `demo` token and shows one fixed sample
+> station to every visitor.
+
+> [!NOTE]
+> Anything prefixed `VITE_` is compiled into the public JS bundle. That is
+> inherent to a keyless client-side app, not a misconfiguration: the browser
+> has to send the token, so the browser can read it. WAQI tokens are free and
+> rate-limited per token. Put a serverless proxy in front if that ever matters.
+
+## 🙏 Credits
 
 Air quality data from [Open-Meteo](https://open-meteo.com/) (CAMS), CC BY 4.0,
 with station search from the [World Air Quality Index](https://aqicn.org/) project.
