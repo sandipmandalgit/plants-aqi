@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowRight } from './icons'
 import { bandFor } from '../lib/aqi'
 import { aqiOn } from '../lib/waqi'
+import { PLANTS } from '../data/plants'
 
 /** Served from our own hosting — the file lives in public/, committed with the project. */
 const HERO_VIDEO_URL = '/hero.mp4'
@@ -113,14 +114,14 @@ export default function Hero({ reading, loading, scale }) {
               className="font-medium tracking-[0.005em]"
               style={{ fontSize: 'calc(14.5px * var(--ui-scale))' }}
             >
-              Green that does the work
+              Know your air
             </h2>
             <p
               className="mt-1.5 font-light leading-[1.55] text-ink-faint"
               style={{ fontSize: 'calc(11.5px * var(--ui-scale))' }}
             >
-              From the air quality outside your window to the native trees that clean it — see
-              what to plant, and how much of it you would need.
+              From the air quality outside your window to the plants that suit it — see what to
+              grow, and roughly what your year costs in trees.
             </p>
           </div>
 
@@ -136,7 +137,7 @@ export default function Hero({ reading, loading, scale }) {
 
           <div className="flex justify-center gap-[clamp(10px,1.4vw,16px)]">
             <LiveStat aqi={aqi} reading={reading} loading={loading} band={band} />
-            <Stat figure="18" label="Species" foot="Native trees profiled" />
+            <Stat figure={PLANTS.length} label="Species" foot="Indoor plants profiled" />
           </div>
         </div>
       </div>

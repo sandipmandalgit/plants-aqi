@@ -407,20 +407,26 @@ export default function AQIWidget({
                   <h4 className="text-[15px] font-medium text-ink">Pollutant breakdown</h4>
                   <p className="mt-1 text-[11.5px] font-light text-ink-faint">
                     {scale === 'india'
-                      ? 'CPCB sub-indices, with the concentration each is derived from.'
-                      : 'US EPA sub-indices, on the same scale as the headline value.'}
+                      ? "Each pollutant's measured amount, converted to a score on the CPCB scale. The AQI is the highest score (marked ▲), not the raw PM2.5 amount."
+                      : "Each pollutant's measured amount, converted to a score on the US EPA scale. The AQI is the highest score (marked ▲), not the raw PM2.5 amount."}
                   </p>
 
-                  <Stagger as="ul" stagger={0.06} className="mt-4 space-y-2.5">
+                  <div className="mt-4 flex items-center gap-3 text-[10px] font-light uppercase tracking-[0.14em] text-ink-faint">
+                    <span className="w-28 shrink-0">Measured</span>
+                    <span className="flex-1" />
+                    <span className="w-12 shrink-0 text-right">Score</span>
+                  </div>
+
+                  <Stagger as="ul" stagger={0.06} className="mt-2 space-y-2.5">
                     {chips.map((chip) => {
                       const chipBand = bandFor(chip.value, scale)
                       return (
                         <StaggerItem as="li" variants={slide} key={chip.key} className="flex items-center gap-3">
-                          <span className="w-24 shrink-0 text-[13px] font-light text-ink-soft">
+                          <span className="w-28 shrink-0 text-[13px] font-light text-ink-soft">
                             {chip.label}
                             {chip.dominant && <span className="ml-1 align-super text-[9px] text-blush">▲</span>}
                             {chip.concentration && (
-                              <span className="block text-[10px] text-ink-faint">{chip.concentration}</span>
+                              <span className="block text-[11.5px] text-ink">{chip.concentration}</span>
                             )}
                           </span>
                           <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
@@ -433,7 +439,7 @@ export default function AQIWidget({
                               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                             />
                           </span>
-                          <span className="w-10 shrink-0 text-right text-[13px] font-normal tabular-nums text-ink">
+                          <span className="w-12 shrink-0 text-right text-[13px] font-normal tabular-nums text-ink">
                             {Math.round(chip.value)}
                           </span>
                         </StaggerItem>

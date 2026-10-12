@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 import Reveal, { Stagger, StaggerItem } from './ui/Reveal'
 import { useInView } from '../hooks/useInView'
 import SectionHeading from './ui/SectionHeading'
-import { TREES } from '../data/trees'
 import {
+  AVG_KG_PER_TREE,
   DIET_LABELS,
   INDIA_AVG_TONNES,
   LIFESTYLE_LABELS,
@@ -87,7 +87,6 @@ function Choice({ label, options, value, onChange }) {
 
 export default function CO2Calculator() {
   const [input, setInput] = useState(DEFAULTS)
-  const [speciesId, setSpeciesId] = useState('banyan')
 
   const set = (key) => (value) => setInput((prev) => ({ ...prev, [key]: value }))
 
@@ -97,8 +96,7 @@ export default function CO2Calculator() {
   const [compareRef, compareSeen] = useInView({ rootMargin: '-80px' })
 
   const result = useMemo(() => calculateFootprint(input), [input])
-  const species = TREES.find((t) => t.id === speciesId) ?? TREES[0]
-  const trees = useMemo(() => treesNeeded(result.total, species.co2), [result.total, species.co2])
+  const trees = useMemo(() => treesNeeded(result.total), [result.total])
 
   const comparisons = [
     { label: 'You', tonnes: result.tonnes, highlight: true },
@@ -231,9 +229,9 @@ export default function CO2Calculator() {
                       {trees.mature}
                     </motion.div>
                     <div className="mt-2 text-[11px] font-light leading-snug text-ink-faint">
-                      mature {species.name.toLowerCase()}
+                      mature trees
                       <br />
-                      trees to break even
+                      to break even (approx.)
                     </div>
                   </div>
                 </div>
@@ -279,31 +277,17 @@ export default function CO2Calculator() {
             <Reveal delay={0.16}>
               <div className="card p-6">
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="text-[15px] font-medium text-ink">Offset with which species?</h3>
+                  <h3 className="text-[15px] font-medium text-ink">About the tree estimate</h3>
                   <span className="text-[11.5px] font-light text-ink-faint">
-                    {species.co2} kg CO₂ per tree per year
+                    ≈ {AVG_KG_PER_TREE} kg CO₂ per tree per year
                   </span>
                 </div>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {[...TREES]
-                    .sort((a, b) => b.co2 - a.co2)
-                    .slice(0, 9)
-                    .map((t) => (
-                      <button
-                        key={t.id}
-                        type="button"
-                        onClick={() => setSpeciesId(t.id)}
-                        aria-pressed={speciesId === t.id}
-                        className={`rounded-full border px-3 py-1.5 text-[12px] font-light transition-colors ${
-                          speciesId === t.id
-                            ? 'border-white/30 bg-white/16 text-ink'
-                            : 'border-hairline bg-white/5 text-ink-soft hover:bg-white/10 hover:text-ink'
-                        }`}
-                      >
-                        {t.name}
-                      </button>
-                    ))}
-                </div>
+                <p className="mt-3 text-[12.5px] font-light leading-relaxed text-ink-faint">
+                  This uses one commonly cited average for a mature tree. Real trees absorb anywhere
+                  from about 10 to over 50 kg a year depending on species, age, soil and rainfall, and
+                  only reach full rate after a decade or more. Treat the count as a sense of scale, not
+                  a planting plan.
+                </p>
               </div>
             </Reveal>
 

@@ -12,7 +12,6 @@ const CREDITS = [
 const SECTIONS = [
   ['#air', 'Live air quality'],
   ['#recommend', 'Plant recommender'],
-  ['#encyclopedia', 'Tree encyclopedia'],
   ['#calculator', 'CO₂ offset calculator'],
   ['#parks', 'Green spaces near you'],
 ]
@@ -33,7 +32,7 @@ export default function Footer() {
               Vanachara
             </span>
             <p className="mt-4 max-w-xs text-[13px] font-light leading-relaxed text-ink-faint">
-              A small field guide to the air you breathe and the trees that clean it. Everything
+              A small field guide to the air you breathe and the greenery around it. Everything
               here runs in your browser — no accounts, no tracking.
             </p>
           </StaggerItem>
@@ -73,8 +72,8 @@ export default function Footer() {
 
         <Reveal delay={0.1} y={16} className="mt-12 flex flex-col gap-3 border-t border-white/8 pt-6 text-[11.5px] font-light text-ink-faint sm:flex-row sm:items-center sm:justify-between">
           <p>
-            Air quality readings are indicative. Emission factors are averages — a guide to scale,
-            not a certified audit.
+            Air quality readings are indicative. Emission factors, tree offsets and plant ratings are
+            averages and lab results — a guide to scale, not a certified audit.
           </p>
           <a href="#top" className="text-ink-soft transition-colors hover:text-ink">
             Back to the canopy ↑

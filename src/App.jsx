@@ -4,7 +4,6 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import AQIWidget from './components/AQIWidget'
 import PlantRecommender from './components/PlantRecommender'
-import Encyclopedia from './components/Encyclopedia'
 import CO2Calculator from './components/CO2Calculator'
 import Footer from './components/Footer'
 import { useGeolocation } from './hooks/useGeolocation'
@@ -70,8 +69,6 @@ export default function App() {
         />
 
         <PlantRecommender reading={air.reading} scale={scale} />
-
-        <Encyclopedia />
 
         <CO2Calculator />
 

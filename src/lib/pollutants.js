@@ -149,6 +149,22 @@ function interpolate(value, [lo, hi, outLo, outHi]) {
   return outLo + ((value - lo) * (outHi - outLo)) / (hi - lo)
 }
 
+/**
+ * Concentration → sub-index against a breakpoint table.
+ *
+ * The published tables are written for whole-number readings, so they leave
+ * gaps between rows (CPCB PM2.5 runs 0–30 then 31–60). Averaged model data is
+ * fractional and lands in those gaps — 90.4 µg/m³ matched no row at all, so
+ * PM2.5 silently vanished and the headline fell back to PM10. Each value now
+ * takes the first row whose upper bound covers it, floored to that row's start.
+ */
+function indexFromTable(table, value) {
+  if (value >= table[table.length - 1][1]) return 500
+
+  const [cLo, cHi, iLo, iHi] = table.find(([, hi]) => value <= hi)
+  return Math.round(interpolate(Math.max(value, cLo), [cLo, cHi, iLo, iHi]))
+}
+
 /** EPA sub-index back to the concentration that produced it, in EPA units. */
 export function epaIndexToConcentration(pollutant, index) {
   const table = EPA[pollutant]
@@ -164,12 +180,7 @@ export function cpcbIndexFor(pollutant, concentration) {
   const table = CPCB[pollutant]
   if (!table || !Number.isFinite(concentration)) return null
 
-  if (concentration >= table[table.length - 1][1]) return 500
-  const row = table.find(([cLo, cHi]) => concentration >= cLo && concentration <= cHi)
-  if (!row) return null
-
-  const [cLo, cHi, iLo, iHi] = row
-  return Math.round(interpolate(concentration, [cLo, cHi, iLo, iHi]))
+  return indexFromTable(table, concentration)
 }
 
 export const CPCB_POLLUTANTS = ['pm25', 'pm10', 'o3', 'no2', 'so2', 'co']
@@ -255,14 +266,7 @@ export function indexFromConcentration(scale, pollutant, ugm3) {
   const table = TABLES[scale]?.[pollutant]
   if (!convert || !table || !Number.isFinite(ugm3)) return null
 
-  const value = convert(ugm3)
-  if (value >= table[table.length - 1][1]) return 500
-
-  const row = table.find(([cLo, cHi]) => value >= cLo && value <= cHi)
-  if (!row) return null
-
-  const [cLo, cHi, iLo, iHi] = row
-  return Math.round(interpolate(value, [cLo, cHi, iLo, iHi]))
+  return indexFromTable(table, convert(ugm3))
 }
 
 /**

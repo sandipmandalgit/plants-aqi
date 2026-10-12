@@ -1,6 +1,6 @@
 /**
- * Botanical silhouettes used as card artwork, so the encyclopedia and the
- * recommender stay entirely self-contained — no image hosts, no broken links.
+ * Botanical silhouettes used as card artwork, so the plant recommender stays
+ * entirely self-contained — no image hosts, no broken links.
  */
 const SHAPES = {
   heart: 'M50 90C50 90 18 66 18 42a32 32 0 0 1 64 0c0 24-32 48-32 48Z',

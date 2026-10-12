@@ -100,13 +100,20 @@ export function calculateFootprint(input) {
 }
 
 /**
+ * A commonly cited average for one mature tree, in kg CO₂ per year. Real
+ * figures run from roughly 10 to 50+ kg depending on species, age, soil and
+ * rainfall, so the calculator treats this as an order-of-magnitude guide.
+ */
+export const AVG_KG_PER_TREE = 21
+
+/**
  * Trees needed to offset a footprint.
  *
  * `kgPerTree` is the annual sequestration of one *mature* tree. Trees only reach
  * that rate after roughly a decade, so `saplings` reports the planting count
  * that gets there once grown, assuming a realistic survival rate.
  */
-export function treesNeeded(totalKg, kgPerTree, { survivalRate = 0.7 } = {}) {
+export function treesNeeded(totalKg, kgPerTree = AVG_KG_PER_TREE, { survivalRate = 0.7 } = {}) {
   const mature = Math.ceil(totalKg / kgPerTree)
   return {
     mature,

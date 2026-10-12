@@ -28,7 +28,7 @@ function PlantCard({ plant, index, band }) {
           shape={index % 3 === 0 ? 'fern' : index % 3 === 1 ? 'oval' : 'lance'}
           className="absolute -bottom-6 -right-4 size-36 text-white/20 transition-transform duration-700 group-hover:rotate-6 group-hover:scale-110"
         />
-        <div className="absolute left-5 top-5 flex gap-1" aria-label={`Purifying strength ${plant.power} of 5`}>
+        <div className="absolute left-5 top-5 flex gap-1" aria-label={`Lab-test purifying rating ${plant.power} of 5`}>
           {Array.from({ length: 5 }, (_, i) => (
             <span key={i} className={`size-1 rounded-full ${i < plant.power ? 'bg-white' : 'bg-white/25'}`} />
           ))}
@@ -124,19 +124,19 @@ export default function PlantRecommender({ reading, scale }) {
       <div className="shell relative">
         <SectionHeading
           eyebrow="Plant match"
-          lead={`Prescribed for ${band.label.toLowerCase()} air`}
-          title="The plants that clean it."
+          lead={`Suggested for ${band.label.toLowerCase()} air`}
+          title="Plants that suit your air."
         >
           {isLive ? (
             <>
-              Your reading of <span className="text-ink">AQI {liveAqi}</span> calls for{' '}
-              <span className="text-ink">{plants.length} species</span> — roughly {totalPots} pots to
-              green a standard room. Heavier air, heavier lifters.
+              For your reading of <span className="text-ink">AQI {liveAqi}</span>, here are{' '}
+              <span className="text-ink">{plants.length} species</span> worth growing — about{' '}
+              {totalPots} pots would green a standard room.
             </>
           ) : (
             <>
-              Pick a band to see what it would take. Each step up the scale swaps in species with
-              higher measured VOC-removal rates.
+              Pick a band to see the suggestions. Each step up the scale favours species that scored
+              higher for VOC removal in lab tests.
             </>
           )}
         </SectionHeading>
@@ -200,8 +200,9 @@ export default function PlantRecommender({ reading, scale }) {
             <div>
               <h3 className="text-[15px] font-medium text-ink">{band.advice}</h3>
               <p className="mt-1.5 text-[13px] font-light leading-relaxed text-ink-faint">
-                Indoor plants are a supplement, not a substitute — pair them with ventilation timing
-                and, above 150, mechanical filtration. Dust the leaves monthly so the stomata stay open.
+                At real-home scale, plants make only a small difference to indoor air — research
+                finds ventilation does far more. Enjoy them as a healthy extra, and above AQI 150 use
+                an air purifier.
               </p>
             </div>
           </div>

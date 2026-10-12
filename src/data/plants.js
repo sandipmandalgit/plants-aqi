@@ -7,7 +7,10 @@
  *
  * `power` (1-5) is a rough ranking of purifying capacity per plant, drawn from
  * the relative removal rates reported in NASA's Clean Air Study and later
- * chamber studies. It orders the list; it is not a dosage.
+ * chamber studies. It orders the list; it is not a dosage. Those were sealed
+ * lab chambers: a 2019 review (Cummings & Waring) found that at real-home
+ * scale, normal ventilation outpaces potted plants by a wide margin, so the
+ * copy here presents plants as a pleasant extra rather than an air purifier.
  */
 
 export const PLANTS = [
@@ -22,7 +25,7 @@ export const PLANTS = [
     water: 'Keep lightly moist',
     care: 'easy',
     perRoom: 4,
-    note: 'The strongest all-round indoor humidifier and filter. Four chest-high palms per person is the classic "living room lung" prescription.',
+    note: 'Rated among the best all-rounders in lab tests and adds a little humidity to dry rooms. A good large plant for a bright living room.',
     palette: ['#2f6b36', '#64a465'],
   },
   {
@@ -36,7 +39,7 @@ export const PLANTS = [
     water: 'Every 2–3 weeks',
     care: 'very easy',
     perRoom: 6,
-    note: 'Releases oxygen at night via CAM photosynthesis, which makes it the standard bedroom plant. Nearly impossible to kill.',
+    note: 'Opens its pores at night (CAM photosynthesis), which is why it is a popular bedroom plant. Nearly impossible to kill.',
     palette: ['#27552e', '#a3c948'],
   },
   {
@@ -64,7 +67,7 @@ export const PLANTS = [
     water: 'Weekly — it droops to ask',
     care: 'easy',
     perRoom: 2,
-    note: 'One of the few plants that tackles ammonia as well as VOCs. Mildly toxic to cats and dogs, so place it high.',
+    note: 'In lab tests, one of the few plants that took up ammonia as well as VOCs. Mildly toxic to cats and dogs, so place it high.',
     palette: ['#224427', '#dfeede'],
   },
   {
@@ -92,7 +95,7 @@ export const PLANTS = [
     water: 'Every 2–3 weeks',
     care: 'very easy',
     perRoom: 2,
-    note: 'A succulent that also releases oxygen overnight, and the leaf gel doubles as a burn remedy. Needs a sunny sill.',
+    note: 'A hardy succulent whose leaf gel is a familiar home remedy for minor burns. Needs a sunny sill.',
     palette: ['#418746', '#94c393'],
   },
   {
@@ -106,7 +109,7 @@ export const PLANTS = [
     water: 'Daily in summer',
     care: 'easy',
     perRoom: 1,
-    note: 'Absorbs SO₂ and NOₓ from traffic exhaust — which is why it traditionally sits in the courtyard, facing the street.',
+    note: 'A traditional courtyard and balcony plant in Indian homes. Loves sun, and the leaves make a good tea.',
     palette: ['#2f6b36', '#85ab2c'],
   },
   {
@@ -120,7 +123,7 @@ export const PLANTS = [
     water: 'Weekly',
     care: 'easy',
     perRoom: 1,
-    note: 'Large waxy leaves mean a lot of gas exchange surface in one pot. Wipe the leaves monthly or dust blocks the pores.',
+    note: 'Large waxy leaves make a bold statement in one pot. Wipe them monthly so dust does not block the light.',
     palette: ['#1d3922', '#7c543c'],
   },
   {
@@ -134,7 +137,7 @@ export const PLANTS = [
     water: 'Keep constantly moist',
     care: 'moderate',
     perRoom: 2,
-    note: 'The top-rated formaldehyde remover in chamber tests, but it is thirsty and sulks in dry air. Best in a bathroom.',
+    note: 'Scored well for formaldehyde in lab chamber tests, but it is thirsty and sulks in dry air. Best in a bathroom.',
     palette: ['#2f6b36', '#c0ddbf'],
   },
   {
@@ -148,7 +151,7 @@ export const PLANTS = [
     water: 'Keep lightly moist',
     care: 'easy',
     perRoom: 2,
-    note: 'Handles genuinely dim corners better than the areca while filtering nearly as hard. Pet-safe.',
+    note: 'Handles genuinely dim corners better than the areca palm. Pet-safe.',
     palette: ['#27552e', '#a3c948'],
   },
   {
@@ -162,7 +165,7 @@ export const PLANTS = [
     water: 'Every 10 days',
     care: 'easy',
     perRoom: 2,
-    note: 'A benzene specialist — useful near printers, paint or a kitchen that shares a wall with parking.',
+    note: 'Did well against benzene in lab tests, and tolerates the low light of offices and hallways.',
     palette: ['#224427', '#64a465'],
   },
   {
@@ -176,7 +179,7 @@ export const PLANTS = [
     water: 'Keep moist while flowering',
     care: 'moderate',
     perRoom: 3,
-    note: 'Scores highest across all five test pollutants, but only while in bloom — treat it as a seasonal booster.',
+    note: 'Scored well across the NASA test pollutants, but it is a flowering plant — treat it as a seasonal pot of colour.',
     palette: ['#966a47', '#a3c948'],
   },
   {
@@ -204,7 +207,7 @@ export const PLANTS = [
     water: 'When topsoil dries',
     care: 'moderate',
     perRoom: 1,
-    note: 'A big filtering canopy for a living room. It drops leaves if you move it, so pick its spot once and leave it.',
+    note: 'A small indoor tree for a bright living room. It drops leaves if you move it, so pick its spot once and leave it.',
     palette: ['#27552e', '#dfeede'],
   },
 ]

@@ -4,7 +4,6 @@ import { Leafmark, MenuIcon } from './icons'
 const LINKS = [
   { label: 'Air', href: '#air' },
   { label: 'Plant match', href: '#recommend' },
-  { label: 'Trees', href: '#encyclopedia' },
   { label: 'Offset', href: '#calculator' },
   { label: 'Green spaces', href: '#parks' },
 ]
@@ -60,10 +59,10 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-1.5 rounded-full border border-hairline bg-[rgba(14,20,16,0.5)] p-1.5 pl-5 backdrop-blur-md backdrop-saturate-[1.2] lg:flex">
           <a
-            href="#encyclopedia"
+            href="#recommend"
             className="pr-2 text-[13.5px] text-ink-soft transition-colors hover:text-ink"
           >
-            Encyclopedia
+            Find plants
           </a>
           <a href="#air" className="btn btn--pearl btn--sm">
             Check my air
@@ -99,13 +98,6 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#encyclopedia"
-            onClick={() => setOpen(false)}
-            className="border-b border-white/8 px-1 py-[13px] text-[15.5px] text-ink-soft"
-          >
-            Encyclopedia
-          </a>
           <a href="#air" onClick={() => setOpen(false)} className="btn btn--pearl mt-4">
             Check my air
           </a>

@@ -65,10 +65,9 @@ low-contrast in the centre — the headline sits on top of it with only a scrim.
 |---|---------|--------------|
 | 1 | 🌲 **Hero** | Full-viewport looping forest-floor video under a two-stop scrim, a centred headline with a lighter lead-in line, and a foot row of glass cards — note · caption · live-AQI stat · species count. |
 | 2 | 🌬️ **Live AQI** | Auto-detects location via the Geolocation API. Hourly readings from Open-Meteo for the exact coordinates, scored on **India's CPCB National AQI** (US EPA via a toggle), with a pollutant breakdown showing the µg/m³ behind each sub-index, weather chips, and a WAQI station search for any other city. |
-| 3 | 🪴 **Plant recommender** | Maps the current AQI band to air-purifying species — cleaner air surfaces easy greenery, worse air surfaces the heavy VOC removers. Any band can be previewed manually. |
-| 4 | 📖 **Encyclopedia** | 18 native and naturalised Indian trees, searchable by name, local name, botanical name, family, region or tag, with a detail sheet per species. |
-| 5 | 🧮 **CO₂ calculator** | Six inputs → annual footprint → the number of trees, saplings and square metres it would take to offset it, plus a comparison against Indian, world and Paris-target averages. |
-| 6 | 🗺️ **Nearby parks** | Leaflet over OpenStreetMap data on Esri's keyless Dark Gray basemap, with parks, gardens, groves and reserves pulled live from the Overpass API at a 2/5/10 km radius. |
+| 3 | 🪴 **Plant recommender** | Maps the current AQI band to suggested indoor plants — cleaner air surfaces easy greenery, worse air surfaces species that scored higher in lab VOC tests. Any band can be previewed manually. |
+| 4 | 🧮 **CO₂ calculator** | Six inputs → annual footprint → an approximate number of trees (using one average figure per mature tree), saplings and square metres it would take to offset it, plus a comparison against Indian, world and Paris-target averages. |
+| 5 | 🗺️ **Nearby parks** | Leaflet over OpenStreetMap data on Esri's keyless Dark Gray basemap, with parks, gardens, groves and reserves pulled live from the Overpass API at a 2/5/10 km radius. |
 
 ## 🚀 Getting started
 
@@ -125,7 +124,7 @@ src/
   hooks/            useGeolocation, useAirQuality, useNearbyParks
   lib/              aqi.js (scales), openMeteo.js (primary source), waqi.js (search),
                     pollutants.js (CPCB/EPA breakpoints), geo.js, carbon.js
-  data/             plants.js (air purifiers), trees.js (encyclopedia)
+  data/             plants.js (indoor plant suggestions)
 ```
 
 ## 📊 Where the numbers come from
