@@ -45,17 +45,17 @@ function Slider({ label, hint, value, onChange, min, max, step = 1, suffix }) {
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         aria-label={label}
-        className="mt-2.5 h-1.5 w-full cursor-pointer appearance-none rounded-full outline-none
-          [&::-webkit-slider-thumb]:size-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full
+        className="mt-1 h-8 w-full cursor-pointer appearance-none bg-transparent outline-none
+          [&::-webkit-slider-thumb]:size-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full
           [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:shadow-[0_2px_10px_rgba(0,0,0,0.5)]
           [&::-webkit-slider-thumb]:transition-transform hover:[&::-webkit-slider-thumb]:scale-115
-          [&::-moz-range-thumb]:size-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0
+          [&::-moz-range-thumb]:size-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0
           [&::-moz-range-thumb]:bg-white"
         style={{
-          background: `linear-gradient(to right, rgba(255,255,255,0.85) ${percent}%, rgba(255,255,255,0.12) ${percent}%)`,
+          background: `linear-gradient(to right, rgba(255,255,255,0.85) ${percent}%, rgba(255,255,255,0.12) ${percent}%) center / 100% 6px no-repeat`,
         }}
       />
-      {hint && <p className="mt-1.5 text-[11.5px] font-light text-ink-faint">{hint}</p>}
+      {hint && <p className="mt-0.5 text-[11.5px] font-light text-ink-faint">{hint}</p>}
     </div>
   )
 }
@@ -71,7 +71,7 @@ function Choice({ label, options, value, onChange }) {
             type="button"
             onClick={() => onChange(key)}
             aria-pressed={value === key}
-            className={`rounded-full border px-3.5 py-1.5 text-[12px] font-light transition-colors ${
+            className={`rounded-full border px-3.5 py-2 text-[12px] font-light transition-colors ${
               value === key
                 ? 'border-white/30 bg-white/16 text-ink'
                 : 'border-hairline bg-white/5 text-ink-soft hover:bg-white/10 hover:text-ink'
@@ -114,7 +114,7 @@ export default function CO2Calculator() {
         : { text: 'Above the sustainable range', color: '#e8730c' }
 
   return (
-    <section id="calculator" className="relative scroll-mt-24 bg-ground py-24 sm:py-32">
+    <section id="calculator" className="relative scroll-mt-24 bg-ground py-10 sm:py-12">
       <div
         className="pointer-events-none absolute inset-0"
         style={{ background: 'radial-gradient(75% 50% at 25% 100%, rgba(5,10,7,0.9) 0%, transparent 70%)' }}

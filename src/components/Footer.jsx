@@ -18,7 +18,7 @@ const SECTIONS = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-ground-deep pt-20">
+    <footer className="relative overflow-hidden bg-ground-deep pt-10 sm:pt-12">
       <div
         className="pointer-events-none absolute inset-0"
         style={{ background: 'radial-gradient(60% 60% at 50% 120%, rgba(22,36,27,0.9) 0%, transparent 70%)' }}
@@ -39,10 +39,10 @@ export default function Footer() {
 
           <StaggerItem>
             <h3 className="text-[10px] font-light uppercase tracking-[0.2em] text-ink-faint">Sections</h3>
-            <Stagger as="ul" stagger={0.05} delayChildren={0.12} className="mt-4 space-y-2.5">
+            <Stagger as="ul" stagger={0.05} delayChildren={0.12} className="mt-2">
               {SECTIONS.map(([href, label]) => (
                 <StaggerItem as="li" variants={slide} key={href}>
-                  <a href={href} className="text-[13.5px] font-light text-ink-soft transition-colors hover:text-ink">
+                  <a href={href} className="inline-block py-2 text-[13.5px] font-light text-ink-soft transition-colors hover:text-ink">
                     {label}
                   </a>
                 </StaggerItem>
@@ -52,14 +52,14 @@ export default function Footer() {
 
           <StaggerItem>
             <h3 className="text-[10px] font-light uppercase tracking-[0.2em] text-ink-faint">Built on</h3>
-            <Stagger as="ul" stagger={0.05} delayChildren={0.18} className="mt-4 space-y-2.5">
+            <Stagger as="ul" stagger={0.05} delayChildren={0.18} className="mt-2">
               {CREDITS.map((c) => (
                 <StaggerItem as="li" variants={slide} key={c.href}>
                   <a
                     href={c.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[13.5px] font-light text-ink-soft transition-colors hover:text-ink"
+                    className="inline-flex items-center gap-1.5 py-2 text-[13.5px] font-light text-ink-soft transition-colors hover:text-ink"
                   >
                     {c.label}
                     <ExternalLink />
@@ -75,7 +75,7 @@ export default function Footer() {
             Air quality readings are indicative. Emission factors, tree offsets and plant ratings are
             averages and lab results — a guide to scale, not a certified audit.
           </p>
-          <a href="#top" className="text-ink-soft transition-colors hover:text-ink">
+          <a href="#top" className="self-start py-2 text-ink-soft transition-colors hover:text-ink sm:self-auto">
             Back to the canopy ↑
           </a>
         </Reveal>

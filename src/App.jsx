@@ -15,7 +15,7 @@ const ParksMap = lazy(() => import('./components/ParksMap'))
 
 function MapFallback() {
   return (
-    <section id="parks" className="scroll-mt-24 bg-ground-deep py-24 sm:py-32">
+    <section id="parks" className="scroll-mt-24 bg-ground-deep py-10 sm:py-12">
       <div className="shell">
         <div className="card h-[560px] animate-pulse" />
       </div>

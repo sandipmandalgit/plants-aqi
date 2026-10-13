@@ -17,7 +17,7 @@ function PlantCard({ plant, index, band }) {
       layout
       variants={riseCard}
       exit={{ opacity: 0, y: -10, scale: 0.98, transition: { duration: 0.35 } }}
-      className="card group flex flex-col overflow-hidden transition-[background-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:bg-glass-lift hover:shadow-[0_18px_44px_rgba(0,0,0,0.34)]"
+      className="card group flex w-full flex-col overflow-hidden sm:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)] xl:w-[calc((100%-3rem)/4)] transition-[background-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:bg-glass-lift hover:shadow-[0_18px_44px_rgba(0,0,0,0.34)]"
     >
       <div
         className="relative h-32 overflow-hidden"
@@ -56,30 +56,33 @@ function PlantCard({ plant, index, band }) {
           ))}
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-3 border-t border-white/8 pt-4 text-[11.5px]">
-          <div>
-            <div className="font-light text-ink-faint">Light</div>
-            <div className="mt-0.5 font-light text-ink-soft">{plant.light}</div>
+        {/* Pinned to the bottom so the rows line up across cards with different tag counts. */}
+        <div className="mt-auto pt-4">
+          <div className="grid grid-cols-2 gap-3 border-t border-white/8 pt-4 text-[11.5px]">
+            <div>
+              <div className="font-light text-ink-faint">Light</div>
+              <div className="mt-0.5 font-light text-ink-soft">{plant.light}</div>
+            </div>
+            <div>
+              <div className="font-light text-ink-faint">Water</div>
+              <div className="mt-0.5 font-light text-ink-soft">{plant.water}</div>
+            </div>
           </div>
-          <div>
-            <div className="font-light text-ink-faint">Water</div>
-            <div className="mt-0.5 font-light text-ink-soft">{plant.water}</div>
-          </div>
-        </div>
 
-        <div className="mt-4 flex items-center justify-between">
-          <span className="rounded-full border border-hairline bg-white/6 px-2.5 py-0.5 text-[11px] font-light capitalize text-ink-soft">
-            {plant.care} care
-          </span>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            className="inline-flex items-center gap-1 text-[12px] font-light text-ink-soft transition-colors hover:text-ink"
-          >
-            {open ? 'Less' : 'Why this one'}
-            <Chevron className={`transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
-          </button>
+          <div className="mt-4 flex items-center justify-between">
+            <span className="rounded-full border border-hairline bg-white/6 px-2.5 py-0.5 text-[11px] font-light capitalize text-ink-soft">
+              {plant.care} care
+            </span>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              className="-my-3 -mr-2 inline-flex items-center gap-1 px-2 py-3 text-[12px] font-light text-ink-soft transition-colors hover:text-ink"
+            >
+              {open ? 'Less' : 'Why this one'}
+              <Chevron className={`transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
         </div>
 
         <AnimatePresence initial={false}>
@@ -115,7 +118,7 @@ export default function PlantRecommender({ reading, scale }) {
   const totalPots = plants.reduce((sum, p) => sum + p.perRoom, 0)
 
   return (
-    <section id="recommend" className="relative scroll-mt-24 overflow-hidden bg-ground py-24 sm:py-32">
+    <section id="recommend" className="relative scroll-mt-24 overflow-hidden bg-ground py-10 sm:py-12">
       <div
         className="pointer-events-none absolute inset-0 transition-colors duration-1000"
         style={{ background: `radial-gradient(80% 55% at 15% 0%, ${band.color}1f 0%, transparent 65%)` }}
@@ -212,7 +215,7 @@ export default function PlantRecommender({ reading, scale }) {
           layout
           stagger={0.06}
           viewport={VIEWPORT_TALL}
-          className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          className="mt-8 flex flex-wrap justify-center gap-4"
         >
           <AnimatePresence mode="popLayout">
             {plants.map((plant, i) => (

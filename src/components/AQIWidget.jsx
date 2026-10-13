@@ -196,7 +196,7 @@ export default function AQIWidget({
   }[source]
 
   return (
-    <section id="air" className="relative scroll-mt-24 bg-ground-deep py-24 sm:py-32">
+    <section id="air" className="relative scroll-mt-24 bg-ground-deep py-10 sm:py-12">
       <div
         className="pointer-events-none absolute inset-0"
         style={{ background: 'radial-gradient(90% 60% at 50% 0%, rgba(22,36,27,0.9) 0%, transparent 70%)' }}
@@ -269,7 +269,7 @@ export default function AQIWidget({
               </div>
             ) : reading && band ? (
               <div
-                className="card relative overflow-hidden p-8 transition-colors duration-700 sm:p-10"
+                className="card relative flex h-full flex-col justify-center overflow-hidden p-8 transition-colors duration-700 sm:p-10"
                 style={{ borderColor: `${band.color}3d` }}
               >
                 <div
@@ -370,7 +370,7 @@ export default function AQIWidget({
                       type="button"
                       onClick={onRefresh}
                       disabled={loading}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-white/6 px-3 py-1 text-ink-soft transition-colors hover:bg-white/12 hover:text-ink disabled:opacity-40"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-hairline bg-white/6 px-3.5 py-2 text-ink-soft transition-colors hover:bg-white/12 hover:text-ink disabled:opacity-40 sm:py-1"
                     >
                       <Refresh size={13} className={loading ? 'animate-spin' : undefined} />
                       Refresh

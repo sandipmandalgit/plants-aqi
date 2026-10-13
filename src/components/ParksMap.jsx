@@ -78,7 +78,7 @@ export default function ParksMap({ coords, geoStatus, onLocate }) {
     <section
       id="parks"
       ref={sectionRef}
-      className="relative scroll-mt-24 bg-ground-deep py-24 sm:py-32"
+      className="relative scroll-mt-24 bg-ground-deep py-10 sm:py-12"
     >
       <div className="shell relative">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

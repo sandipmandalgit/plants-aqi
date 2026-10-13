@@ -46,7 +46,7 @@ export default function CitySearch({ onSelect, onClear, active }) {
 
   return (
     <div ref={boxRef} className="relative w-full sm:max-w-sm">
-      <div className="flex items-center gap-2.5 rounded-full border border-hairline bg-glass px-5 py-2.5 backdrop-blur-md transition-colors focus-within:border-white/28">
+      <div className="flex items-center gap-2.5 rounded-full border border-hairline bg-glass px-5 backdrop-blur-md transition-colors focus-within:border-white/28">
         <Search className="shrink-0 text-ink-faint" />
         <input
           value={query}
@@ -54,7 +54,7 @@ export default function CitySearch({ onSelect, onClear, active }) {
           onFocus={() => results.length && setOpen(true)}
           placeholder="Search a city or station…"
           aria-label="Search for a city or monitoring station"
-          className="w-full bg-transparent text-[13.5px] font-light text-ink outline-none placeholder:text-ink-faint"
+          className="w-full bg-transparent py-2.5 text-[16px] font-light text-ink outline-none placeholder:text-ink-faint sm:text-[13.5px]"
         />
         {searching && (
           <span className="size-3 shrink-0 animate-spin rounded-full border border-white/20 border-t-white/70" />
