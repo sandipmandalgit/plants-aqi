@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import LeafMotif from './ui/LeafMotif'
 import Reveal, { Stagger } from './ui/Reveal'
 import { VIEWPORT_TALL, riseCard } from './ui/motion'
 import SectionHeading from './ui/SectionHeading'
@@ -9,7 +8,7 @@ import { plantsForBand } from '../data/plants'
 import { bandFor, bandsFor } from '../lib/aqi'
 import { aqiOn } from '../lib/waqi'
 
-function PlantCard({ plant, index, band }) {
+function PlantCard({ plant, band }) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -17,20 +16,25 @@ function PlantCard({ plant, index, band }) {
       layout
       variants={riseCard}
       exit={{ opacity: 0, y: -10, scale: 0.98, transition: { duration: 0.35 } }}
-      className="card group flex w-full flex-col overflow-hidden sm:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)] xl:w-[calc((100%-3rem)/4)] transition-[background-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:bg-glass-lift hover:shadow-[0_18px_44px_rgba(0,0,0,0.34)]"
+      className="card group flex w-full flex-col overflow-hidden sm:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)] transition-[background-color,box-shadow,transform] duration-500 hover:-translate-y-1 hover:bg-glass-lift hover:shadow-[0_18px_44px_rgba(0,0,0,0.34)]"
     >
       <div
-        className="relative h-32 overflow-hidden"
+        className="relative h-44 overflow-hidden"
         style={{ background: `linear-gradient(135deg, ${plant.palette[0]}, ${plant.palette[1]})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
-        <LeafMotif
-          shape={index % 3 === 0 ? 'fern' : index % 3 === 1 ? 'oval' : 'lance'}
-          className="absolute -bottom-6 -right-4 size-36 text-white/20 transition-transform duration-700 group-hover:rotate-6 group-hover:scale-110"
+        <img
+          src={plant.photo.src}
+          alt={`${plant.name} (${plant.botanical})`}
+          width={800}
+          height={500}
+          loading="lazy"
+          decoding="async"
+          className="size-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-black/30" />
         <div className="absolute left-5 top-5 flex gap-1" aria-label={`Lab-test purifying rating ${plant.power} of 5`}>
           {Array.from({ length: 5 }, (_, i) => (
-            <span key={i} className={`size-1 rounded-full ${i < plant.power ? 'bg-white' : 'bg-white/25'}`} />
+            <span key={i} className={`size-1.5 rounded-full ${i < plant.power ? 'bg-white' : 'bg-white/35'}`} />
           ))}
         </div>
         <span
@@ -39,6 +43,16 @@ function PlantCard({ plant, index, band }) {
         >
           {plant.perRoom} per room
         </span>
+        {/* CC licences require attribution; the link carries author and licence. */}
+        <a
+          href={plant.photo.url}
+          target="_blank"
+          rel="noreferrer"
+          title={`Photo: ${plant.photo.author}, ${plant.photo.license}, via Wikimedia Commons`}
+          className="absolute bottom-3 right-3 max-w-[55%] truncate rounded-full bg-black/40 px-2 py-0.5 text-[9.5px] font-light text-white/75 backdrop-blur-sm transition-colors hover:text-white"
+        >
+          © {plant.photo.author} · {plant.photo.license}
+        </a>
       </div>
 
       <div className="flex flex-1 flex-col p-5">
@@ -218,8 +232,8 @@ export default function PlantRecommender({ reading, scale }) {
           className="mt-8 flex flex-wrap justify-center gap-4"
         >
           <AnimatePresence mode="popLayout">
-            {plants.map((plant, i) => (
-              <PlantCard key={plant.id} plant={plant} index={i} band={band} />
+            {plants.map((plant) => (
+              <PlantCard key={plant.id} plant={plant} band={band} />
             ))}
           </AnimatePresence>
         </Stagger>

@@ -1,40 +1,33 @@
 /**
  * Thin client for the World Air Quality Index (WAQI) API.
  *
- * Set VITE_WAQI_TOKEN in a .env file (see .env.example). Get a free token at
- * https://aqicn.org/data-platform/token/ — the built-in "demo" token only
- * resolves a handful of stations and is there so the UI has something to show
- * before you register.
+ * Requests go through our own /api/waqi proxy (api/waqi.js), which holds the
+ * token server-side in WAQI_TOKEN and lets the CDN cache answers. Get a free
+ * token at https://aqicn.org/data-platform/token/ — without one the proxy falls
+ * back to WAQI's shared "demo" token, which only resolves a fixed sample station.
  */
 
 import { haversineKm, reverseGeocodeCity } from './geo'
 import { toIndianAQI } from './pollutants'
 
-const BASE = 'https://api.waqi.info'
-export const TOKEN = import.meta.env.VITE_WAQI_TOKEN || 'demo'
-export const IS_DEMO_TOKEN = TOKEN === 'demo'
+/** Set at build time from whether WAQI_TOKEN exists — the token itself is never bundled. */
+export const IS_DEMO_TOKEN = import.meta.env.VITE_WAQI_IS_DEMO === 'true'
 
-async function request(path) {
-  const url = `${BASE}${path}${path.includes('?') ? '&' : '?'}token=${encodeURIComponent(TOKEN)}`
-  const res = await fetch(url)
-  if (!res.ok) throw new Error(`WAQI responded ${res.status}`)
+async function request(query) {
+  const res = await fetch(`/api/waqi?${new URLSearchParams(query)}`)
+  if (res.status === 429) throw new Error('Too many requests — try again in a minute.')
 
-  const body = await res.json()
-  if (body.status !== 'ok') {
+  const body = await res.json().catch(() => null)
+  if (!body || body.status !== 'ok') {
     // WAQI puts the reason in `data` when status is "error" (e.g. "Invalid key").
-    throw new Error(typeof body.data === 'string' ? body.data : 'WAQI request failed')
+    throw new Error(typeof body?.data === 'string' ? body.data : 'WAQI request failed')
   }
   return body.data
 }
 
 /** Nearest monitoring station to a coordinate. */
 export function fetchByCoords(lat, lon) {
-  return request(`/feed/geo:${lat};${lon}/`)
-}
-
-/** Station inferred from the caller's IP — the fallback when geolocation is refused. */
-export function fetchHere() {
-  return request('/feed/here/')
+  return request({ feed: `geo:${lat};${lon}` })
 }
 
 /**
@@ -42,15 +35,14 @@ export function fetchHere() {
  * or "@2556". `/` and the uid `@` are structural, so they survive encoding.
  */
 export function fetchByCity(city) {
-  const path = encodeURIComponent(city).replace(/%2F/g, '/').replace(/%40/g, '@')
-  return request(`/feed/${path}/`)
+  return request({ feed: city })
 }
 
 /** Station search for the city picker. Returns [] rather than throwing on a miss. */
 export async function searchStations(keyword) {
   if (!keyword.trim()) return []
   try {
-    return await request(`/search/?keyword=${encodeURIComponent(keyword.trim())}`)
+    return await request({ search: keyword.trim() })
   } catch {
     return []
   }

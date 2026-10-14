@@ -38,9 +38,9 @@ export default function Navbar() {
         <a
           href="#top"
           onClick={() => setActive(LINKS[0].label)}
-          className="inline-flex items-center gap-[7px] rounded-full border border-hairline bg-[rgba(14,20,16,0.5)] px-4 py-2 text-[15.5px] font-medium tracking-[0.01em] text-ink backdrop-blur-md backdrop-saturate-[1.2]"
+          className="inline-flex min-h-11 items-center gap-[7px] rounded-full border border-hairline bg-[rgba(14,20,16,0.5)] px-4 py-2 text-[16px] font-medium tracking-[0.01em] text-ink backdrop-blur-md backdrop-saturate-[1.2]"
         >
-          <Leafmark />
+          <Leafmark size={21} />
           Vanachara
         </a>
 
@@ -74,9 +74,9 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label={open ? 'Close menu' : 'Open menu'}
-          className="ml-auto inline-flex rounded-full border border-hairline bg-[rgba(14,20,16,0.5)] p-2.5 text-ink backdrop-blur-md lg:hidden"
+          className="ml-auto inline-flex size-11 items-center justify-center rounded-full border border-hairline bg-[rgba(14,20,16,0.5)] text-ink backdrop-blur-md lg:hidden"
         >
-          <MenuIcon open={open} />
+          <MenuIcon open={open} size={22} />
         </button>
       </div>
 

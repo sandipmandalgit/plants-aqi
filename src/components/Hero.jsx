@@ -30,10 +30,10 @@ export default function Hero({ reading, loading, scale }) {
   return (
     <section
       id="top"
-      className="relative isolate flex flex-col overflow-hidden"
+      // Phones get a larger UI scale so the foot-row cards and text stay legible
+      // and tappable; from md up the desktop proportions take over.
+      className="relative isolate flex flex-col overflow-hidden [--scale:1.08] [--ui-scale:1.18] md:[--scale:1] md:[--ui-scale:1]"
       style={{
-        '--scale': 1,
-        '--ui-scale': 1,
         minHeight: '100svh',
         paddingTop: 'var(--nav-h)',
         paddingBottom: 'clamp(20px, 3vh, 34px)',
@@ -73,7 +73,7 @@ export default function Hero({ reading, loading, scale }) {
           <h1
             className="animate-bloom font-normal text-ink"
             style={{
-              fontSize: 'calc(clamp(1.9rem, 4.3vw, 3.5rem) * var(--scale))',
+              fontSize: 'calc(clamp(2rem, 4.3vw, 3.5rem) * var(--scale))',
               lineHeight: 1.16,
               letterSpacing: '-0.005em',
               textShadow: '0 2px 26px rgba(4,10,6,0.6)',
@@ -135,7 +135,7 @@ export default function Hero({ reading, loading, scale }) {
             The forest breathes in what we breathe out.
           </p>
 
-          <div className="flex justify-center gap-[clamp(10px,1.4vw,16px)]">
+          <div className="flex justify-center gap-3 md:gap-[clamp(10px,1.4vw,16px)]">
             <LiveStat aqi={aqi} reading={reading} loading={loading} band={band} />
             <Stat figure={PLANTS.length} label="Species" foot="Indoor plants profiled" />
           </div>
@@ -206,12 +206,12 @@ function LiveStat({ aqi, reading, loading, band }) {
         className="flex items-center gap-2 font-medium leading-[1.1]"
         style={{ fontSize: 'calc(23px * var(--ui-scale))' }}
       >
-        <span className="relative flex size-2">
+        <span className="relative flex size-2.5">
           <span
             className="absolute inline-flex size-full rounded-full"
             style={{ backgroundColor: band.color, animation: 'pulse-ring 2.4s cubic-bezier(0.4,0,0.6,1) infinite' }}
           />
-          <span className="relative inline-flex size-2 rounded-full" style={{ backgroundColor: band.color }} />
+          <span className="relative inline-flex size-2.5 rounded-full" style={{ backgroundColor: band.color }} />
         </span>
         {aqi}
       </strong>

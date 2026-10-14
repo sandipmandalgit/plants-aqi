@@ -27,13 +27,19 @@ export const PLANTS = [
     perRoom: 4,
     note: 'Rated among the best all-rounders in lab tests and adds a little humidity to dry rooms. A good large plant for a bright living room.',
     palette: ['#2f6b36', '#64a465'],
+    photo: {
+      src: '/plants/areca-palm.webp',
+      author: 'Ping an Chang',
+      license: 'CC BY-SA 4.0',
+      url: 'https://commons.wikimedia.org/wiki/File:%E6%95%A3%E5%B0%BE%E8%91%B5Dypsis_lutescens_20210511145013_05.jpg',
+    },
   },
   {
     id: 'snake-plant',
     name: 'Snake Plant',
     botanical: 'Dracaena trifasciata',
     power: 5,
-    bands: ['satisfactory', 'moderate', 'poor', 'very-poor', 'severe'],
+    bands: ['good', 'satisfactory', 'moderate', 'poor', 'very-poor', 'severe'],
     removes: ['Benzene', 'Formaldehyde', 'Trichloroethylene'],
     light: 'Low to bright',
     water: 'Every 2–3 weeks',
@@ -41,6 +47,12 @@ export const PLANTS = [
     perRoom: 6,
     note: 'Opens its pores at night (CAM photosynthesis), which is why it is a popular bedroom plant. Nearly impossible to kill.',
     palette: ['#27552e', '#a3c948'],
+    photo: {
+      src: '/plants/snake-plant.webp',
+      author: 'Mokkie',
+      license: 'CC BY-SA 3.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Snake_Plant_(Sansevieria_trifasciata_%27Laurentii%27).jpg',
+    },
   },
   {
     id: 'money-plant',
@@ -55,6 +67,12 @@ export const PLANTS = [
     perRoom: 2,
     note: 'Grows in plain water on a windowsill. The most forgiving purifier available in almost every Indian nursery.',
     palette: ['#418746', '#c0ddbf'],
+    photo: {
+      src: '/plants/money-plant.webp',
+      author: 'Mokkie',
+      license: 'CC BY-SA 3.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Money_Plant_(Epipremnum_aureum)_4.jpg',
+    },
   },
   {
     id: 'peace-lily',
@@ -69,6 +87,12 @@ export const PLANTS = [
     perRoom: 2,
     note: 'In lab tests, one of the few plants that took up ammonia as well as VOCs. Mildly toxic to cats and dogs, so place it high.',
     palette: ['#224427', '#dfeede'],
+    photo: {
+      src: '/plants/peace-lily.webp',
+      author: 'W.carter',
+      license: 'CC BY-SA 4.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Peace_lily_-_1_-_cropped.jpg',
+    },
   },
   {
     id: 'spider-plant',
@@ -83,6 +107,12 @@ export const PLANTS = [
     perRoom: 3,
     note: 'Throws out baby plantlets you can pot endlessly, so one plant becomes a whole balcony for free. Pet-safe.',
     palette: ['#64a465', '#f2f8f2'],
+    photo: {
+      src: '/plants/spider-plant.webp',
+      author: 'Dtarazona / Peter Coxhead',
+      license: 'Public domain',
+      url: 'https://commons.wikimedia.org/wiki/File:Hierbabuena_0611_Revised.jpg',
+    },
   },
   {
     id: 'aloe-vera',
@@ -97,6 +127,12 @@ export const PLANTS = [
     perRoom: 2,
     note: 'A hardy succulent whose leaf gel is a familiar home remedy for minor burns. Needs a sunny sill.',
     palette: ['#418746', '#94c393'],
+    photo: {
+      src: '/plants/aloe-vera.webp',
+      author: 'Praneethpjv',
+      license: 'CC BY-SA 4.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Aloe_vera_plant_in_flower_pot.jpg',
+    },
   },
   {
     id: 'tulsi',
@@ -111,6 +147,12 @@ export const PLANTS = [
     perRoom: 1,
     note: 'A traditional courtyard and balcony plant in Indian homes. Loves sun, and the leaves make a good tea.',
     palette: ['#2f6b36', '#85ab2c'],
+    photo: {
+      src: '/plants/tulsi.webp',
+      author: 'Shashidhara halady',
+      license: 'CC BY-SA 3.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Tulsi_or_Tulasi_Holy_basil.jpg',
+    },
   },
   {
     id: 'rubber-plant',
@@ -125,6 +167,12 @@ export const PLANTS = [
     perRoom: 1,
     note: 'Large waxy leaves make a bold statement in one pot. Wipe them monthly so dust does not block the light.',
     palette: ['#1d3922', '#7c543c'],
+    photo: {
+      src: '/plants/rubber-plant.webp',
+      author: 'B.navez',
+      license: 'CC BY-SA 3.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Ficus_elastica_leaves_02.JPG',
+    },
   },
   {
     id: 'boston-fern',
@@ -139,6 +187,12 @@ export const PLANTS = [
     perRoom: 2,
     note: 'Scored well for formaldehyde in lab chamber tests, but it is thirsty and sulks in dry air. Best in a bathroom.',
     palette: ['#2f6b36', '#c0ddbf'],
+    photo: {
+      src: '/plants/boston-fern.webp',
+      author: 'Homer Edward Price',
+      license: 'CC BY 2.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Boston_Fern_(2873392811).png',
+    },
   },
   {
     id: 'bamboo-palm',
@@ -153,6 +207,12 @@ export const PLANTS = [
     perRoom: 2,
     note: 'Handles genuinely dim corners better than the areca palm. Pet-safe.',
     palette: ['#27552e', '#a3c948'],
+    photo: {
+      src: '/plants/bamboo-palm.webp',
+      author: 'KENPEI',
+      license: 'CC BY-SA 3.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Chamaedorea_seifrizii7.jpg',
+    },
   },
   {
     id: 'dracaena',
@@ -167,6 +227,12 @@ export const PLANTS = [
     perRoom: 2,
     note: 'Did well against benzene in lab tests, and tolerates the low light of offices and hallways.',
     palette: ['#224427', '#64a465'],
+    photo: {
+      src: '/plants/dracaena.webp',
+      author: 'rojypala',
+      license: 'CC BY 2.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Dracaena_fragrans_(2).jpg',
+    },
   },
   {
     id: 'chrysanthemum',
@@ -181,6 +247,12 @@ export const PLANTS = [
     perRoom: 3,
     note: 'Scored well across the NASA test pollutants, but it is a flowering plant — treat it as a seasonal pot of colour.',
     palette: ['#966a47', '#a3c948'],
+    photo: {
+      src: '/plants/chrysanthemum.webp',
+      author: 'Aruna',
+      license: 'CC BY-SA 3.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Chrysanthemum.JPG',
+    },
   },
   {
     id: 'zz-plant',
@@ -195,6 +267,12 @@ export const PLANTS = [
     perRoom: 2,
     note: 'Survives a windowless office and a forgotten watering can. The low-effort entry point into indoor greenery.',
     palette: ['#1d3922', '#94c393'],
+    photo: {
+      src: '/plants/zz-plant.webp',
+      author: 'WeFt',
+      license: 'CC BY-SA 3.0',
+      url: 'https://commons.wikimedia.org/wiki/File:Zamioculcas_zamiifolia_1.jpg',
+    },
   },
   {
     id: 'weeping-fig',
@@ -209,10 +287,24 @@ export const PLANTS = [
     perRoom: 1,
     note: 'A small indoor tree for a bright living room. It drops leaves if you move it, so pick its spot once and leave it.',
     palette: ['#27552e', '#dfeede'],
+    photo: {
+      src: '/plants/weeping-fig.webp',
+      author: 'Darsie',
+      license: 'Public domain',
+      url: 'https://commons.wikimedia.org/wiki/File:Ficus-benjamina.jpg',
+    },
   },
 ]
 
+/**
+ * Every band shows the same number of cards, so the grid fills whole rows at
+ * 1, 2 and 3 columns. Each band must list at least this many plants.
+ */
+export const PLANTS_PER_BAND = 6
+
 /** Plants suited to a given AQI band key, strongest purifiers first. */
 export function plantsForBand(bandKey) {
-  return PLANTS.filter((p) => p.bands.includes(bandKey)).sort((a, b) => b.power - a.power)
+  return PLANTS.filter((p) => p.bands.includes(bandKey))
+    .sort((a, b) => b.power - a.power)
+    .slice(0, PLANTS_PER_BAND)
 }

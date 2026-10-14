@@ -236,7 +236,7 @@ export default function AQIWidget({
               </strong>{' '}
               The reading below is unaffected — it comes from Open-Meteo — but station search will
               only resolve one fixed sample station until you add your own free token as{' '}
-              <code className="rounded bg-white/10 px-1.5 py-0.5 text-[11px]">VITE_WAQI_TOKEN</code>{' '}
+              <code className="rounded bg-white/10 px-1.5 py-0.5 text-[11px]">WAQI_TOKEN</code>{' '}
               in <code className="rounded bg-white/10 px-1.5 py-0.5 text-[11px]">.env</code>. It
               takes about a minute at{' '}
               <a

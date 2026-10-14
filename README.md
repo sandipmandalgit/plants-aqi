@@ -89,7 +89,7 @@ cp .env.example .env     # then edit .env
 ```
 
 ```
-VITE_WAQI_TOKEN=your_token_here
+WAQI_TOKEN=your_token_here
 ```
 
 Two things catch people out:
@@ -258,7 +258,8 @@ legend and plant recommender all read from one scale so they cannot disagree.
 
 ## ▲ Deploying
 
-A static build with no server code, so any static host works. For Vercel:
+A static build plus one serverless function, `api/waqi.js`, which Vercel picks
+up automatically. For Vercel:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sandipmandalgit/plants-aqi)
 
@@ -267,17 +268,15 @@ No `vercel.json` is needed: it is a single page using hash anchors, so there are
 no rewrite rules to configure.
 
 > [!IMPORTANT]
-> Set `VITE_WAQI_TOKEN` in **Environment Variables before the first build**.
-> Vite inlines env vars at build time, so adding the token later does nothing
-> until you trigger a fresh deploy. Without it the build still succeeds — it
-> quietly falls back to WAQI's shared `demo` token and shows one fixed sample
-> station to every visitor.
+> Set `WAQI_TOKEN` in **Environment Variables**, then redeploy. Without it the
+> build still succeeds — the proxy quietly falls back to WAQI's shared `demo`
+> token and city search shows one fixed sample station to every visitor.
 
 > [!NOTE]
-> Anything prefixed `VITE_` is compiled into the public JS bundle. That is
-> inherent to a keyless client-side app, not a misconfiguration: the browser
-> has to send the token, so the browser can read it. WAQI tokens are free and
-> rate-limited per token. Put a serverless proxy in front if that ever matters.
+> The token has **no** `VITE_` prefix, so it stays on the server. Browsers call
+> `/api/waqi`, which adds the token, caps each IP at about 40 requests a minute
+> and marks good answers cacheable so Vercel's CDN serves repeats without
+> touching WAQI. `npm run dev` serves the same handler locally.
 
 ## 🙏 Credits
 

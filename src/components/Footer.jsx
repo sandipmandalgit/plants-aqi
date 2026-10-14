@@ -7,6 +7,7 @@ const CREDITS = [
   { label: 'OpenStreetMap', href: 'https://www.openstreetmap.org/copyright' },
   { label: 'Overpass API', href: 'https://overpass-api.de/' },
   { label: 'Leaflet', href: 'https://leafletjs.com/' },
+  { label: 'Plant photos · Wikimedia Commons', href: 'https://commons.wikimedia.org/' },
 ]
 
 const SECTIONS = [
