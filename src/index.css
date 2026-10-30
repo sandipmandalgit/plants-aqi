@@ -255,6 +255,14 @@
     -webkit-backdrop-filter: blur(16px) saturate(120%);
     backdrop-filter: blur(16px) saturate(120%);
   }
+  /* A rail that may wrap. A 999px radius turns two rows into a capsule whose
+     curved ends cut across the corner buttons; 24px is a button's own radius
+     plus the rail's padding and border, so the corners stay concentric — and
+     on a single row it still reads as a pill. */
+  .rail--wrap {
+    flex-wrap: wrap;
+    border-radius: 24px;
+  }
   .rail > button,
   .rail > a {
     padding: 8px 17px;

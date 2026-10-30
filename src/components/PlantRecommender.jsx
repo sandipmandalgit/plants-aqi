@@ -183,7 +183,7 @@ export default function PlantRecommender({ reading, scale }) {
               </button>
             )}
 
-            <div className="rail flex-wrap">
+            <div className="rail rail--wrap">
               {bands.map((b) => {
                 const selected = manualBand === b.key
                 return (

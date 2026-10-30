@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useCallback, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { EASE, VIEWPORT, rise } from './motion'
 
 /**
@@ -54,6 +55,11 @@ export default function Reveal({
  * Children mounted later (a filter change swapping a grid's contents) inherit
  * `visible` immediately and animate without the stagger, which is what you
  * want: the cascade belongs to the arrival, not to every re-sort.
+ *
+ * That inheritance only works through `animate`. Framer Motion does not pass a
+ * parent's `whileInView` state to children mounted after it fired, so with
+ * `whileInView` those children stay at `hidden` — invisible but taking up
+ * space. The viewport is therefore watched here and fed in as `animate`.
  */
 export function Stagger({
   children,
@@ -68,16 +74,34 @@ export function Stagger({
    * trigger there would have fired against an empty container.
    */
   trigger = 'view',
+  ref: forwardedRef,
   ...rest
 }) {
   const MotionTag = motion[as] ?? motion.div
-  const run = trigger === 'mount' ? { animate: 'visible' } : { whileInView: 'visible', viewport }
+  const localRef = useRef(null)
+  const inView = useInView(localRef, {
+    once: viewport.once ?? true,
+    amount: viewport.amount,
+    margin: viewport.margin,
+  })
+  const shown = trigger === 'mount' || inView
+
+  // Callers such as the CO2 calculator need the element too.
+  const setRef = useCallback(
+    (node) => {
+      localRef.current = node
+      if (typeof forwardedRef === 'function') forwardedRef(node)
+      else if (forwardedRef) forwardedRef.current = node
+    },
+    [forwardedRef],
+  )
 
   return (
     <MotionTag
+      ref={setRef}
       className={className}
       initial="hidden"
-      {...run}
+      animate={shown ? 'visible' : 'hidden'}
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: stagger, delayChildren } },

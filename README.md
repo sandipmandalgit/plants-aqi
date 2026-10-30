@@ -237,8 +237,12 @@ legend and plant recommender all read from one scale so they cannot disagree.
 - **Indian station data runs weeks behind** on WAQI at the moment. Any reading
   older than 24 h is labelled "Stale · last reported …" rather than presented as
   live — a stale number shown as current is worse than no number.
-- **Overpass** is a free, volunteer-run service. The hook tries three mirrors in
-  turn with a 60 s timeout each. That timeout is deliberately generous: the
+- **Overpass** is a free, volunteer-run service and is often overloaded. The
+  browser asks `/api/parks`, which Vercel's CDN caches per ~110 m area for a day
+  and serves stale for a week, so most visits never reach Overpass and searched
+  areas survive outages. Behind it, `src/lib/overpass.js` hedges across four
+  mirrors: a failure moves on at once, and a mirror silent for 6 s gets the next
+  one started alongside it. Each mirror is allowed up to 60 s, deliberately generous: the
   `[timeout:25]` inside the query caps Overpass's *execution* time, and queue
   time on a busy instance stacks on top — a request measured at 29.7 s here
   would have been aborted by a 25 s client timeout. The query deliberately
@@ -258,8 +262,9 @@ legend and plant recommender all read from one scale so they cannot disagree.
 
 ## ▲ Deploying
 
-A static build plus one serverless function, `api/waqi.js`, which Vercel picks
-up automatically. For Vercel:
+A static build plus two serverless functions, `api/waqi.js` and `api/parks.js`,
+which Vercel picks up automatically. On a host without functions the parks map
+still works by calling the Overpass mirrors directly, just without the cache. For Vercel:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sandipmandalgit/plants-aqi)
 
