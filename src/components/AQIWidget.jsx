@@ -196,7 +196,7 @@ export default function AQIWidget({
   }[source]
 
   return (
-    <section id="air" className="relative scroll-mt-24 bg-ground-deep py-10 sm:py-12">
+    <section id="air" className="relative scroll-mt-24 bg-ground-deep/55 py-10 sm:py-12">
       <div
         className="pointer-events-none absolute inset-0"
         style={{ background: 'radial-gradient(90% 60% at 50% 0%, rgba(22,36,27,0.9) 0%, transparent 70%)' }}

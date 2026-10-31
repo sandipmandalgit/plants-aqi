@@ -19,7 +19,7 @@ const SECTIONS = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-ground-deep pt-10 sm:pt-12">
+    <footer className="relative overflow-hidden bg-ground-deep/55 pt-10 sm:pt-12">
       <div
         className="pointer-events-none absolute inset-0"
         style={{ background: 'radial-gradient(60% 60% at 50% 120%, rgba(22,36,27,0.9) 0%, transparent 70%)' }}

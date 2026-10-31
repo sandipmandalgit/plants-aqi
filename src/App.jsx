@@ -1,5 +1,6 @@
 import { Suspense, lazy, useMemo, useState } from 'react'
 import { MotionConfig } from 'framer-motion'
+import AmbientBackground from './components/AmbientBackground'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import AQIWidget from './components/AQIWidget'
@@ -15,7 +16,7 @@ const ParksMap = lazy(() => import('./components/ParksMap'))
 
 function MapFallback() {
   return (
-    <section id="parks" className="scroll-mt-24 bg-ground-deep py-10 sm:py-12">
+    <section id="parks" className="scroll-mt-24 bg-ground-deep/55 py-10 sm:py-12">
       <div className="shell">
         <div className="card h-[560px] animate-pulse" />
       </div>
@@ -48,6 +49,8 @@ export default function App() {
     // drives transforms from JS. `reducedMotion="user"` is what actually holds
     // the travel back for those visitors, leaving the opacity fade intact.
     <MotionConfig reducedMotion="user">
+      <AmbientBackground />
+
       <Navbar />
 
       <main>

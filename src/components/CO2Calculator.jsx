@@ -114,7 +114,7 @@ export default function CO2Calculator() {
         : { text: 'Above the sustainable range', color: '#e8730c' }
 
   return (
-    <section id="calculator" className="relative scroll-mt-24 bg-ground py-10 sm:py-12">
+    <section id="calculator" className="relative scroll-mt-24 bg-ground/60 py-10 sm:py-12">
       <div
         className="pointer-events-none absolute inset-0"
         style={{ background: 'radial-gradient(75% 50% at 25% 100%, rgba(5,10,7,0.9) 0%, transparent 70%)' }}

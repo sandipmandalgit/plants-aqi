@@ -132,7 +132,7 @@ export default function PlantRecommender({ reading, scale }) {
   const totalPots = plants.reduce((sum, p) => sum + p.perRoom, 0)
 
   return (
-    <section id="recommend" className="relative scroll-mt-24 overflow-hidden bg-ground py-10 sm:py-12">
+    <section id="recommend" className="relative scroll-mt-24 overflow-hidden bg-ground/60 py-10 sm:py-12">
       <div
         className="pointer-events-none absolute inset-0 transition-colors duration-1000"
         style={{ background: `radial-gradient(80% 55% at 15% 0%, ${band.color}1f 0%, transparent 65%)` }}
