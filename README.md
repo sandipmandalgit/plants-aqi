@@ -269,8 +269,10 @@ still works by calling the Overpass mirrors directly, just without the cache. Fo
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sandipmandalgit/plants-aqi)
 
 The Vite preset is detected automatically — build `npm run build`, output `dist`.
-No `vercel.json` is needed: it is a single page using hash anchors, so there are
-no rewrite rules to configure.
+`vercel.json` holds only security headers — there are no rewrites, since it is a
+single page using hash anchors. The Content-Security-Policy lists every outside
+host the page talks to; **adding a new API or tile server means adding its
+origin to `connect-src` or `img-src` there**, or the browser will block it.
 
 > [!IMPORTANT]
 > Set `WAQI_TOKEN` in **Environment Variables**, then redeploy. Without it the
